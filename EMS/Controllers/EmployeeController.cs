@@ -22,18 +22,18 @@ namespace EMS.Controllers
             if(ModelState.IsValid)
             {
                 EmployeeDetailsBL employeeDetailsBL = new EmployeeDetailsBL();
-                employeeDetailsBL.AddEmployeeDetails(employeeDetails);
-                //{
-                //    ViewBag.IsError = false;
-                //    ViewBag.Message = $"{employeeDetails.EmployeeName} added successfully";
-                //}
-                //else
-                //{
-                //    ViewBag.IsError = true;
-                //    ViewBag.Message = "Error raised while adding, please check code";
-                //}
+                if(employeeDetailsBL.AddEmployeeDetails(employeeDetails))
+                {
+                    TempData["IsError"] = false;
+                    TempData["Message"] = $"{employeeDetails.EmployeeName} added successfully";
+                }
+                else
+                {
+                    TempData["IsError"] = true;
+                    TempData["Message"] = "Error raised while adding, please check code";
+                }
             }
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }

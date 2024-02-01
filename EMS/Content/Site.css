@@ -18,3 +18,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*Message pop-up colors*/
+
+.modal-header-brg-colors {
+    background-color: red;
+}
+
+.modal-title-brg-colors {
+    color: green;
+}
