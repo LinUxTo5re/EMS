@@ -41,3 +41,9 @@ label.required-label::after {
     content: " *";
     color: red;
 }
+
+/*Dropdown height/widht adjustment*/
+.dropdown-custom {
+    width: 300px; 
+    height: 35px;
+}

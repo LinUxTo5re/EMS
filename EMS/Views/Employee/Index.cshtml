@@ -89,7 +89,7 @@
                              new SelectListItem{Text = "Male", Value = "Male"},
                              new SelectListItem{Text = "Female", Value="Female"}
                          },
-                         "Select Gender", new { htmlAttribute = new { @class = "from-control border border-1 border-dark" } }
+                         "Select Gender", new { @class = "from-control border border-1 border-dark dropdown-custom" } 
                          )
                 @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
             </div>
