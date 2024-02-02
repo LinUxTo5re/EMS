@@ -12,7 +12,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group d-flex flex-row mb-2">
-            @Html.LabelFor(model => model.EmployeeName, "Employee Name: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
+            @Html.LabelFor(model => model.EmployeeName, "Employee Name*: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EmployeeName, new
                 {
@@ -28,7 +28,7 @@
         </div>
 
         <div class="form-group d-flex flex-row mb-2">
-            @Html.LabelFor(model => model.EmployeeCode, "Employee Code: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
+            @Html.LabelFor(model => model.EmployeeCode, "Employee Code*: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EmployeeCode, new
            {
@@ -46,7 +46,7 @@
         </div>
 
         <div class="form-group d-flex flex-row mb-2">
-            @Html.LabelFor(model => model.MailID, "Email ID: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
+            @Html.LabelFor(model => model.MailID, "Email ID*: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.MailID, new
            {
