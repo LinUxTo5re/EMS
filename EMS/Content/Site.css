@@ -22,9 +22,22 @@ textarea {
 /*Message pop-up colors*/
 
 .modal-header-brg-colors {
-    background-color: red;
+    background-color: #c96666;
 }
+
 
 .modal-title-brg-colors {
     color: green;
+}
+
+.title-font-adj {
+    color: #147a04;
+    font-style: italic;
+}
+
+
+/*required (*)*/
+label.required-label::after {
+    content: " *";
+    color: red;
 }

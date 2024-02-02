@@ -25,13 +25,18 @@ namespace EMS.Controllers
                 if(employeeDetailsBL.AddEmployeeDetails(employeeDetails))
                 {
                     TempData["IsError"] = false;
-                    TempData["Message"] = $"{employeeDetails.EmployeeName} added successfully";
+                    TempData["Message"] = $"{employeeDetails.EmployeeName.ToUpper()} added successfully";
                 }
                 else
                 {
                     TempData["IsError"] = true;
-                    TempData["Message"] = "Error raised while adding, please check code";
+                    TempData["Message"] = "Please fill the manadatory fields or check code";
                 }
+                return Json(new
+                {
+                    IsError = TempData["IsError"],
+                    Message = TempData["Message"]
+                });
             }
             return RedirectToAction("Index");
         }

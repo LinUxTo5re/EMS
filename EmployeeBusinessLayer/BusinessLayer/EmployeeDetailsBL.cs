@@ -23,7 +23,11 @@ namespace EmployeeBusinessLayer.BusinessLayer
                     cmd.Parameters.Add(new SqlParameter("@EmployeeName", employeeDetails.EmployeeName));
                     cmd.Parameters.Add(new SqlParameter("@MailId", employeeDetails.MailID));
                     cmd.Parameters.Add(new SqlParameter("@EmployeeCode", int.TryParse(employeeDetails.EmployeeCode, out int employeeCode) ? (object)employeeCode : DBNull.Value));
+                    if (employeeDetails.ContactNumber is null)
+                        employeeDetails.ContactNumber = string.Empty;
                     cmd.Parameters.Add(new SqlParameter("@MobileNumber", employeeDetails.ContactNumber));
+                    if (employeeDetails.Gender is null)
+                        employeeDetails.Gender = string.Empty;
                     cmd.Parameters.Add(new SqlParameter("@Gender", employeeDetails.Gender));
                     con.Open();
                     cmd.ExecuteNonQuery();

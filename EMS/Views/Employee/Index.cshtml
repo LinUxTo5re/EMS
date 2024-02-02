@@ -2,82 +2,202 @@
 
 <h2 class="d-flex justify-content-center align-items-center"><b>Employee Management System</b></h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "Employee", FormMethod.Post, new { id = "AddEmployeeForm" }))
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h5 class="text-info"> Add Employee Details</h5>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <h5 class="text-info"> Add Employee Details</h5>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group d-flex flex-row mb-2">
-        @Html.LabelFor(model => model.EmployeeName, "Employee Name: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.EmployeeName, new { htmlAttributes = new { @class = "form-control border border-1 border-dark" } })
-            @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
+        <div class="form-group d-flex flex-row mb-2">
+            @Html.LabelFor(model => model.EmployeeName, "Employee Name: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmployeeName, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "form-control border border-1 border-dark",
+               required = "required",
+               id = "EmployeeName"
+           }
+                })
+                @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex flex-row mb-2">
+            @Html.LabelFor(model => model.EmployeeCode, "Employee Code: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmployeeCode, new
+           {
+               htmlAttributes = new
+               {
+                   @class = "form-control border border-1 border-dark",
+                   type = "number",
+                   step = "1",
+                   id = "EmployeeCode",
+                   required = "required"
+               }
+           })
+                @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex flex-row mb-2">
+            @Html.LabelFor(model => model.MailID, "Email ID: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MailID, new
+           {
+               htmlAttributes = new
+               {
+                   @class = "form-control border border-1 border-dark",
+                   type = "email",
+                   id = "Email",
+                   required = "required"
+               }
+           })
+                @Html.ValidationMessageFor(model => model.MailID, "", new { @class = "text-danger" })
+                <label id="emailError" style="color: red; display: none;">Invalid Email Format</label>
+
+            </div>
+        </div>
+
+        <div class="form-group d-flex flex-row mb-2">
+            @Html.LabelFor(model => model.ContactNumber, "Mobile Number: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ContactNumber, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "form-control border border-1 border-dark",
+               type = "number",
+                        step = "1",
+               id = "ContactNumber"
+           }
+                })
+                @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex flex-row mb-2">
+            @Html.LabelFor(model => model.Gender, "Gender: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
+            <div class="col-md-10">
+                @Html.DropDownList("Gender", new List<SelectListItem>
+                         {
+                             new SelectListItem{Text = "Male", Value = "Male"},
+                             new SelectListItem{Text = "Female", Value="Female"}
+                         },
+                         "Select Gender", new { htmlAttribute = new { @class = "from-control border border-1 border-dark" } }
+                         )
+                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10 my-4">
+                <button type="button" id="submitBtn" class="btn btn-primary col-md-2 mr-4">Create</button>
+                <button type="button" id="resetBtn" class="btn btn-primary col-md-2 mx-5">Reset</button>
+            </div>
         </div>
     </div>
-
-    <div class="form-group d-flex flex-row mb-2">
-        @Html.LabelFor(model => model.EmployeeCode, "Employee Code: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.EmployeeCode, new { htmlAttributes = new { @class = "form-control border border-1 border-dark" } })
-            @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group d-flex flex-row mb-2">
-        @Html.LabelFor(model => model.MailID, "Email ID: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.MailID, new { htmlAttributes = new { @class = "form-control border border-1 border-dark" } })
-            @Html.ValidationMessageFor(model => model.MailID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group d-flex flex-row mb-2">
-        @Html.LabelFor(model => model.ContactNumber, "Mobile Number: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "form-control border border-1 border-dark" } })
-            @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group d-flex flex-row mb-2">
-        @Html.LabelFor(model => model.Gender, "Gender: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
-        <div class="col-md-10">
-            @Html.DropDownList("Gender", new List<SelectListItem>
-                     {
-                         new SelectListItem{Text = "Male", Value = "Male"},
-                         new SelectListItem{Text = "Female", Value="Female"}
-                     },
-                     "Select Gender", new { htmlAttribute = new { @class = "from-control border border-1 border-dark" } }
-                     )
-            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
- 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10 my-4">
-            <button type="submit" id="message-on-submit" class="btn btn-primary col-md-2 mr-4">Create</button>
-            <button type="reset" class="btn btn-primary col-md-2 mx-5">Reset</button>
-        </div>
-    </div>
-</div>
 }
 
 @Html.Partial("_MessageHandler") @section Scripts {
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script>
-        $(function () {
-            $("#message-on-submit").click(function (e) {
-                e.preventDefault();
-                $("#message-popup .modal-title").html("Custom text");
-                $("#message-popup .modal-body").html("demo text");
-                $("#message-popup").modal("show");
+<script>
+    $(document).ready(function () {
+        $('#submitBtn').on('click', function () {
+            $.ajax({
+                url: $('#AddEmployeeForm').attr('action'),
+                type: 'POST',
+                data: $('#AddEmployeeForm').serialize(),
+                success: function (response) {
+                    var IsError = response.IsError;
+                    var messageText = response.Message;
+
+                    if (IsError) {
+                        console.log('Error occurred:', messageText);
+                    } else {
+                        console.log('Success:', messageText);
+                    }
+                    displayModal(IsError, messageText);
+                }
             });
         });
+        $('#resetBtn').on('click', function (e) {
+            $('#AddEmployeeForm')[0].reset();
+            $('#emailError').hide();
+        });
+
+        $('#resetBtn').on('click', function () {
+            $('#yourForm')[0].reset();
+        });
+
+        $('#ContactNumber').on('input', function () {
+            var contactNumber = $(this).val().replace(/[^0-9]/g, '').slice(0, 10);
+            $(this).val(contactNumber);
+        });
+        $('#EmployeeName').on('input', function () {
+            handleSubmitResetBtn();
+        });
+        $('#EmployeeCode').on('input', function () {
+            var empCode = $(this).val().replace(/[^0-9]/g, '').slice(0, 6);
+            $(this).val(empCode);
+            handleSubmitResetBtn();
+        });
+
+        var isEmailFieldBlurred = false;
+
+        $('#Email').on('blur', function () {
+            isEmailFieldBlurred = true;
+            validateEmail();
+        });
+
+        $('#Email').on('input', function () {
+            if (isEmailFieldBlurred) {
+                validateEmail();
+            }
+        });
+
+        function validateEmail() {
+            var email = $('#Email').val();
+            var emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+            handleSubmitResetBtn();
+            if (!emailRegex.test(email)) {
+                $('#emailError').show();
+            } else {
+                $('#emailError').hide();
+            }
+        }
+        function handleSubmitResetBtn() {
+            var emailValue = $('#Email').val();
+            var empcodeValue = $('#EmployeeCode').val();
+            var empNameValue = $('#EmployeeName').val();
+            var empContactValue = $('ContactNumber').val();
+            var empGender = $('Gender').val();
+
+            if (emailValue === '' || empcodeValue === '' || empNameValue === '') {
+                $('#submitBtn').prop('disabled', true);
+            } else {
+                $('#submitBtn').prop('disabled', false);
+            }
+        }
+
+
+        function displayModal(IsError, messageText) {
+            var status = IsError ? "Error" : "Information";
+            $("#message-popup .modal-title").html(status);
+            if (IsError) {
+                $("#message-popup .modal-body").html(messageText);
+            } else {
+                $("#message-popup .modal-body").html(messageText);
+            }
+            $("#message-popup").modal("show");
+        }
+    });
     </script>
 }
+
