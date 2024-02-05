@@ -11,24 +11,29 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group d-flex flex-row mb-2">
-            @Html.LabelFor(model => model.EmployeeName, "Employee Name*: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EmployeeName, new
+    <div class="form-group d-flex flex-row mb-2">
+        <label for="EmployeeName" class="control-label col-md-2 fw-normal fs-4">
+            Employee Name<span class="red-asterisk">*</span>:
+        </label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.EmployeeName, new
+            {
+                htmlAttributes = new
                 {
-                    htmlAttributes = new
-                    {
-                        @class = "form-control border border-1 border-dark",
-               required = "required",
-               id = "EmployeeName"
-           }
-                })
-                @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
-            </div>
+                    @class = "form-control border border-1 border-dark",
+           required = "required",
+           id = "EmployeeName",
+           placeholder="Enter name"
+       }
+            })
+            @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
         </div>
+    </div>
 
         <div class="form-group d-flex flex-row mb-2">
-            @Html.LabelFor(model => model.EmployeeCode, "Employee Code*: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
+            <label for="EmployeeCode" class="control-label col-md-2 fw-normal fs-4">
+                Employee Code<span class="red-asterisk">*</span>:
+            </label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EmployeeCode, new
            {
@@ -38,7 +43,8 @@
                    type = "number",
                    step = "1",
                    id = "EmployeeCode",
-                   required = "required"
+                   required = "required",
+                   placeholder = "Enter code"
                }
            })
                 @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
@@ -46,7 +52,9 @@
         </div>
 
         <div class="form-group d-flex flex-row mb-2">
-            @Html.LabelFor(model => model.MailID, "Email ID*: ", htmlAttributes: new { @class = "control-label col-md-2 fw-normal fs-4" })
+            <label for="EmployeeMailID" class="control-label col-md-2 fw-normal fs-4">
+                Email ID<span class="red-asterisk">*</span>:
+            </label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.MailID, new
            {
@@ -55,6 +63,7 @@
                    @class = "form-control border border-1 border-dark",
                    type = "email",
                    id = "Email",
+                   placeholder="Enter mail",
                    required = "required"
                }
            })
@@ -74,7 +83,8 @@
                         @class = "form-control border border-1 border-dark",
                type = "number",
                         step = "1",
-               id = "ContactNumber"
+               id = "ContactNumber",
+               placeholder = "Enter contact details"
            }
                 })
                 @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })

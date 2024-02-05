@@ -35,13 +35,6 @@ textarea {
     font-style: italic;
 }
 
-
-/*required (*)*/
-label.required-label::after {
-    content: " *";
-    color: red;
-}
-
 /*Dropdown height/widht adjustment*/
 .dropdown-custom {
     width: 300px; 
@@ -57,6 +50,11 @@ label.required-label::after {
     transition: transform 0.3s ease;
 }
 
-    .zoom-link:hover {
-        transform: scale(1.2);
-    }
+.zoom-link:hover {
+     transform: scale(1.2);
+}
+
+/*required (*)*/
+.red-asterisk {
+    color: red;
+}
