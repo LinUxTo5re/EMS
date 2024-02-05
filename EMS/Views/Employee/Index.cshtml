@@ -107,7 +107,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10 my-4">
-                <button type="button" id="submitBtn" class="btn btn-primary col-md-2 mr-4">Create</button>
+                <button type="button" id="submitBtn" class="btn btn-primary col-md-2 mr-4">Save</button>
                 <button type="button" id="resetBtn" class="btn btn-primary col-md-2 mx-5">Reset</button>
             </div>
         </div>
@@ -137,6 +137,7 @@
                     }
                     displayModal(IsError, messageText);
                     $('#AddEmployeeForm')[0].reset();
+                    $('#submitBtn').prop('disabled', true);
                 }
             });
         });
