@@ -12,6 +12,11 @@ namespace EmployeeBusinessLayer.BusinessLayer
 {
     public class EmployeeDetailsBL
     {
+        /// <summary>
+        /// Store employee details in DB using stored procedure
+        /// </summary>
+        /// <param name="employeeDetails"></param>
+        /// <returns></returns>
         public bool AddEmployeeDetails(EmployeeDetails employeeDetails)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["Business_Layer_DB_Connection"].ConnectionString;
@@ -23,7 +28,7 @@ namespace EmployeeBusinessLayer.BusinessLayer
                     cmd.Parameters.Add(new SqlParameter("@EmployeeName", employeeDetails.EmployeeName));
                     cmd.Parameters.Add(new SqlParameter("@MailId", employeeDetails.MailID));
                     cmd.Parameters.Add(new SqlParameter("@EmployeeCode", int.TryParse(employeeDetails.EmployeeCode, out int employeeCode) ? (object)employeeCode : DBNull.Value));
-                    if (employeeDetails.ContactNumber is null)
+                    if (employeeDetails.ContactNumber is null) // if null, store empty string
                         employeeDetails.ContactNumber = string.Empty;
                     cmd.Parameters.Add(new SqlParameter("@MobileNumber", employeeDetails.ContactNumber));
                     if (employeeDetails.Gender is null)
@@ -33,9 +38,8 @@ namespace EmployeeBusinessLayer.BusinessLayer
                     cmd.ExecuteNonQuery();
                     return true;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Console.WriteLine(ex.ToString());
                     return false;
                 }
             }

@@ -10,12 +10,20 @@ namespace EMS.Controllers
 {
     public class EmployeeController : Controller
     {
-        // GET: Employee
+        /// <summary>
+        /// Get api call for index
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// post api call to store the employee details
+        /// </summary>
+        /// <param name="employeeDetails"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Index(EmployeeDetails employeeDetails)
         {
@@ -30,7 +38,7 @@ namespace EMS.Controllers
                 else
                 {
                     TempData["IsError"] = true;
-                    TempData["Message"] = "Please fill the manadatory fields or check code";
+                    TempData["Message"] = "Please fill out the mandatory fields or check the code";
                 }
                 return Json(new
                 {

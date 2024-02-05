@@ -119,6 +119,8 @@
     @Scripts.Render("~/bundles/bootstrap")
 <script>
     $(document).ready(function () {
+        $('#submitBtn').prop('disabled', true);
+
         $('#submitBtn').on('click', function () {
             $.ajax({
                 url: $('#AddEmployeeForm').attr('action'),
@@ -144,19 +146,20 @@
         });
 
         $('#ContactNumber').on('input', function () {
-            var contactNumber = $(this).val().replace(/[^0-9]/g, '').slice(0, 10);
+            var contactNumber = $(this).val().replace(/[^0-9]/g, '').slice(0, 10); // number will have 10 digits
             $(this).val(contactNumber);
         });
         $('#EmployeeName').on('input', function () {
             handleSubmitResetBtn();
         });
         $('#EmployeeCode').on('input', function () {
-            var empCode = $(this).val().replace(/[^0-9]/g, '').slice(0, 6);
+            var empCode = $(this).val().replace(/[^0-9]/g, '').slice(0, 6); // emp code should have 3-6 digits
             $(this).val(empCode);
             handleSubmitResetBtn();
         });
 
         var isEmailFieldBlurred = false;
+        var emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
 
         $('#Email').on('blur', function () {
             isEmailFieldBlurred = true;
@@ -171,7 +174,6 @@
 
         function validateEmail() {
             var email = $('#Email').val();
-            var emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
             handleSubmitResetBtn();
             if (!emailRegex.test(email)) {
                 $('#emailError').show();
@@ -183,8 +185,6 @@
             var emailValue = $('#Email').val();
             var empcodeValue = $('#EmployeeCode').val();
             var empNameValue = $('#EmployeeName').val();
-            var empContactValue = $('ContactNumber').val();
-            var empGender = $('Gender').val();
 
             if (emailValue === '' || empcodeValue === '' || empNameValue === '') {
                 $('#submitBtn').prop('disabled', true);
@@ -203,6 +203,7 @@
             }
             $("#message-popup").modal("show");
         }
+
     });
     </script>
 }
