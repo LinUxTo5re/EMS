@@ -133,10 +133,6 @@
             $('#emailError').hide();
         });
 
-        $('#resetBtn').on('click', function () {
-            $('#yourForm')[0].reset();
-        });
-
         $('#ContactNumber').on('input', function () {
             var contactNumber = $(this).val().replace(/[^0-9]/g, '').slice(0, 10);
             $(this).val(contactNumber);

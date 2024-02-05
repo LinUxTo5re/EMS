@@ -12,8 +12,14 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Developed By <b><i>Chaitanya</i></b></p>
+            <div class="col-md-offset-2 d-flex flex-row ml-3">
+                <p class="mb-0">&copy; @DateTime.Now.Year - Developed By <b><i>Chaitanya</i></b></p>
+                <a href="https://github.com/LinUxTo5re" class="ml-5 mx-3 zoom-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/chaitanya-ajabe-99a449221/" class=" zoom-link">LinkedIN</a>
+            </div>
+
         </footer>
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")

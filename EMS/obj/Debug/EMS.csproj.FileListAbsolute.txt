@@ -75,6 +75,7 @@ C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\bin\Newtonsoft.Json.xml
 C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\bin\Antlr3.Runtime.pdb
 C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\obj\Debug\EMS.csproj.AssemblyReference.cache
+C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\obj\Debug\EMS.g.resources
 C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\obj\Debug\EMS.csproj.CoreCompileInputs.cache
 C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\obj\Debug\EMS.csproj.CopyComplete
 C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\obj\Debug\EMS.dll

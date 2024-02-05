@@ -47,3 +47,16 @@ label.required-label::after {
     width: 300px; 
     height: 35px;
 }
+
+/*My Branding*/
+
+.zoom-link {
+    position: relative;
+    color: #8b1ec9;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+    .zoom-link:hover {
+        transform: scale(1.2);
+    }
