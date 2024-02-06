@@ -33,6 +33,7 @@ textarea {
 .title-font-adj {
     color: #147a04;
     font-style: italic;
+    text-align: center;
 }
 
 /*Dropdown height/widht adjustment*/

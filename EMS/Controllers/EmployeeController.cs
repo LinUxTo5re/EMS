@@ -61,7 +61,6 @@ namespace EMS.Controllers
         {
             EmployeeDetailsBL employeeDetailsBL = new EmployeeDetailsBL();
             List<EmployeeDetails> employeeDetails = employeeDetailsBL.DisplayEmployeeDetails();
-            employeeDetails = null;
             return View(employeeDetails);
         }
     }
