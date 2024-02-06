@@ -21,7 +21,6 @@ CREATE TABLE EmployeeDetails
   MobileNumber VARCHAR(15), 
   Gender VARCHAR(10),
   CONSTRAINT CHK_EmployeeCodeLength CHECK (LEN(CONVERT(VARCHAR, EmployeeCode)) <= 6),
-  --CONSTRAINT CHK_ValidMobileNumber CHECK (ISNUMERIC(MobileNumber) = 1)
 );
 
 GO
@@ -48,6 +47,5 @@ END;
 
 GO
 
-exec spEmployeeDetails;
-4
+
 delete dbo.EmployeeDetails where EmployeeId >110

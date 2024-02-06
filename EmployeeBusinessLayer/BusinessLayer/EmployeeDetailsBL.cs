@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using System.Globalization;
 
 namespace EmployeeBusinessLayer.BusinessLayer
 {
@@ -25,7 +26,7 @@ namespace EmployeeBusinessLayer.BusinessLayer
             {
                 try
                 {
-                    cmd.Parameters.Add(new SqlParameter("@EmployeeName", employeeDetails.EmployeeName));
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeName", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(employeeDetails.EmployeeName)));
                     cmd.Parameters.Add(new SqlParameter("@MailId", employeeDetails.MailID));
                     cmd.Parameters.Add(new SqlParameter("@EmployeeCode", int.TryParse(employeeDetails.EmployeeCode, out int employeeCode) ? (object)employeeCode : DBNull.Value));
                     if (employeeDetails.ContactNumber is null) // if null, store empty string
