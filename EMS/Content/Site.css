@@ -59,3 +59,22 @@ textarea {
 .red-asterisk {
     color: red;
 }
+
+.zoom-nav-bar {
+    position: center;
+    transition: transform 0.3s ease;
+}
+
+    .zoom-nav-bar:hover {
+        transform: scale(1.5);
+    }
+
+
+.zoom-nav-bar-render {
+    position: center;
+    transition: transform 0.3s ease;
+}
+
+    .zoom-nav-bar-render:hover {
+        transform: scale(1.1);
+    }

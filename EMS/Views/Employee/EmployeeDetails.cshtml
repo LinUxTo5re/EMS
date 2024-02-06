@@ -33,7 +33,7 @@
         columns.Add(c => c.MailID).Titled("Email ID").Sortable(true);
         columns.Add(c => c.ContactNumber).Titled("Contact Number").Sortable(true);
         columns.Add(c => c.Gender).Titled("Gender").Sortable(true);
-    }).WithPaging(5)
+    }).WithPaging(10)
 }
 
 @Html.Partial("_MessageHandler")

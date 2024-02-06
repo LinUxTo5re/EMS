@@ -76,6 +76,12 @@ namespace EmployeeBusinessLayer.BusinessLayer
                             };
                             employeesDetails.Add(employee);
                         }
+                        employeesDetails.ForEach(e =>
+                        {
+                            e.ContactNumber = string.IsNullOrEmpty(e.ContactNumber) ? "-" : e.ContactNumber;
+                            e.Gender = string.IsNullOrEmpty(e.Gender) ? "-" : e.Gender;
+                        });
+
                         reader.Close();
                     }
                     catch (Exception)
