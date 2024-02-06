@@ -44,5 +44,50 @@ namespace EmployeeBusinessLayer.BusinessLayer
                 }
             }
         }
+
+        /// <summary>
+        /// Fetch employee details from DB using stored procedure
+        /// </summary>
+        /// <returns></returns>
+        public List<EmployeeDetails> DisplayEmployeeDetails()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["Business_Layer_DB_Connection"].ConnectionString;
+            List<EmployeeDetails> employeesDetails = new List<EmployeeDetails>();
+            using (var con = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("spEmployeeDetails", con) { CommandType = CommandType.StoredProcedure })
+            {
+                try
+                {
+                    con.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    try
+                    {
+                        while (reader.Read())
+                        {
+                            EmployeeDetails employee = new EmployeeDetails
+                            {
+                                EmployeeID = (int)reader["EmployeeId"],
+                                EmployeeName = (string)reader["EmployeeName"],
+                                EmployeeCode = reader["EmployeeCode"].ToString(),
+                                MailID = (string)reader["MailId"],
+                                ContactNumber = (string)reader["MobileNumber"],
+                                Gender = (string)reader["Gender"]
+                            };
+                            employeesDetails.Add(employee);
+                        }
+                        reader.Close();
+                    }
+                    catch (Exception)
+                    {
+                        return employeesDetails ?? null; // return details whichever available until exception thrown (assignment op)
+                    }
+                    return employeesDetails;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

@@ -29,24 +29,39 @@ namespace EMS.Controllers
         {
             if(ModelState.IsValid)
             {
-                EmployeeDetailsBL employeeDetailsBL = new EmployeeDetailsBL();
-                if(employeeDetailsBL.AddEmployeeDetails(employeeDetails))
+                try
                 {
-                    TempData["IsError"] = false;
-                    TempData["Message"] = $"{employeeDetails.EmployeeName.ToUpper()} added successfully";
+                    EmployeeDetailsBL employeeDetailsBL = new EmployeeDetailsBL();
+                    if (employeeDetailsBL.AddEmployeeDetails(employeeDetails))
+                    {
+                        TempData["IsError"] = false;
+                        TempData["Message"] = $"{employeeDetails.EmployeeName.ToUpper()} added successfully";
+                    }
+                    else
+                    {
+                        TempData["IsError"] = true;
+                        TempData["Message"] = "Please fill out the mandatory fields or check the code";
+                    }
+                    return Json(new
+                    {
+                        IsError = TempData["IsError"],
+                        Message = TempData["Message"]
+                    });
                 }
-                else
+                catch (Exception)
                 {
-                    TempData["IsError"] = true;
-                    TempData["Message"] = "Please fill out the mandatory fields or check the code";
+                    return RedirectToAction("Index");
                 }
-                return Json(new
-                {
-                    IsError = TempData["IsError"],
-                    Message = TempData["Message"]
-                });
             }
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult EmployeeDetails()
+        {
+            EmployeeDetailsBL employeeDetailsBL = new EmployeeDetailsBL();
+            List<EmployeeDetails> employeeDetails = employeeDetailsBL.DisplayEmployeeDetails();
+            return View(employeeDetails);
         }
     }
 }

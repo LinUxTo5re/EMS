@@ -17,7 +17,7 @@ CREATE TABLE EmployeeDetails
   EmployeeId INT PRIMARY KEY IDENTITY(101, 1),
   EmployeeName NVARCHAR(50),
   EmployeeCode INT,
-  MailId VARCHAR(25),
+  MailId VARCHAR(50),
   MobileNumber VARCHAR(15), 
   Gender VARCHAR(10),
   CONSTRAINT CHK_EmployeeCodeLength CHECK (LEN(CONVERT(VARCHAR, EmployeeCode)) <= 6),
@@ -29,8 +29,8 @@ GO
 CREATE OR ALTER PROCEDURE spAddEmployeeDetails
     @EmployeeName NVARCHAR(50),
     @EmployeeCode INT,
-    @MailId VARCHAR(25),
-    @MobileNumber VARCHAR(15), -- Adjust the size based on your requirements
+    @MailId VARCHAR(50),
+    @MobileNumber VARCHAR(15),
     @Gender VARCHAR(10)
 AS
 BEGIN
@@ -40,15 +40,14 @@ END;
 
 GO
 
---EXEC spAddEmployeeDetails
---    @EmployeeName = N'John Doe',
---    @EmployeeCode = 100001,
---    @MailId = 'john.doe@example.com',
---    @MobileNumber = '1234567890',
---    @Gender = 'Male';
+CREATE OR ALTER PROCEDURE spEmployeeDetails
+AS
+BEGIN
+SELECT * FROM dbo.EmployeeDetails
+END;
 
---GO
+GO
 
-SELECT * FROM dbo.EmployeeDetails;
-
+exec spEmployeeDetails;
+4
 delete dbo.EmployeeDetails where EmployeeId >110

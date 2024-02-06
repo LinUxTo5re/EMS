@@ -1,0 +1,13 @@
+﻿@model List<EmployeeBusinessLayer.Models.EmployeeDetails>
+@using GridMvc.Html
+
+<h5 class="text-info">Employee Details</h5>
+
+@Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.EmployeeCode).Titled("Employee Code").Sortable(true);
+    columns.Add(c => c.EmployeeName).Titled("Name").Sortable(true);
+    columns.Add(c => c.MailID).Titled("Email ID").Sortable(true);
+    columns.Add(c => c.ContactNumber).Titled("Contact Number").Sortable(true);
+    columns.Add(c => c.Gender).Titled("Gender").Sortable(true);
+}).WithPaging(5)

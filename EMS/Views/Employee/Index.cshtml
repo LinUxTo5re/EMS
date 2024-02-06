@@ -1,7 +1,5 @@
 ﻿@model EmployeeBusinessLayer.Models.EmployeeDetails
 
-<h2 class="d-flex justify-content-center align-items-center"><b>Employee Management System</b></h2>
-
 @using (Html.BeginForm("Index", "Employee", FormMethod.Post, new { id = "AddEmployeeForm" }))
 {
     @Html.AntiForgeryToken()

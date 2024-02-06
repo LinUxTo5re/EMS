@@ -52,6 +52,7 @@ C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\bin\roslyn\VBCSCompiler.exe
 C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\bin\Antlr3.Runtime.dll
 C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\bin\EmployeeBusinessLayer.dll
+C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\bin\GridMvc.dll
 C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\cajabe\Desktop\EMS2.0\EMS\EMS\bin\Newtonsoft.Json.dll

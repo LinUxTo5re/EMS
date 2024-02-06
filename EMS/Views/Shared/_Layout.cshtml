@@ -8,6 +8,21 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("EMS", "Index", "Employee", new { area = "" }, new { @class = "navbar-brand fs-3" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between mx-xl-3">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="mx-lg-2">@Html.ActionLink("Home", "Index", "Employee", new { area = "" }, new { @class = "nav-link text-info fw-normal fs-5 fst-italic" })</li>
+                    <li class="mx-lg-2">@Html.ActionLink("Details", "EmployeeDetails", "Employee", new { area = "" }, new { @class = "nav-link text-info fw-normal fs-5 fst-italic" })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
