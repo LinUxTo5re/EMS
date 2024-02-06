@@ -1,5 +1,11 @@
-﻿<div id="message-popup" class="modal fade">
-    <div class="modal-dialog modal-dialog-brg-colors">
+﻿<script>
+    function redirectToRoot() {
+        window.location.href = '/';
+    }
+</script>
+
+<div id="message-popup" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-brg-colors">
         <div class="modal-content modal-content-brg-colors">
             <div class="modal-header modal-header-brg-colors">
                 <h4 class="modal-title title-font-adj">@Html.Raw(Model)</h4>
@@ -7,18 +13,9 @@
             <div class="modal-body">
                 @Html.Raw(Model)
             </div>
-            @*<div class="modal-footer">
-                <button type="button" id="closeModalBtn" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>*@
+            <div class="modal-footer">
+                <button type="button" id="closeBtn" class="btn btn-secondary" onclick="redirectToRoot()">Close</button>
+            </div>
         </div>
     </div>
 </div>
-
-
-@*<script>
-        $(document).ready(function () {
-            $('#closeModalBtn').on('click', function () {
-                $('#message-popup').modal('hide');
-            });
-        });
-    </script>*@
