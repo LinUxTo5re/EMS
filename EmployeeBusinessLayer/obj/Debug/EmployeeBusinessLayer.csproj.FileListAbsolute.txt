@@ -1,6 +1,0 @@
-C:\Users\cajabe\Desktop\EMS2.0\EMS\EmployeeBusinessLayer\bin\Debug\EmployeeBusinessLayer.dll
-C:\Users\cajabe\Desktop\EMS2.0\EMS\EmployeeBusinessLayer\bin\Debug\EmployeeBusinessLayer.pdb
-C:\Users\cajabe\Desktop\EMS2.0\EMS\EmployeeBusinessLayer\obj\Debug\EmployeeBusinessLayer.csproj.AssemblyReference.cache
-C:\Users\cajabe\Desktop\EMS2.0\EMS\EmployeeBusinessLayer\obj\Debug\EmployeeBusinessLayer.csproj.CoreCompileInputs.cache
-C:\Users\cajabe\Desktop\EMS2.0\EMS\EmployeeBusinessLayer\obj\Debug\EmployeeBusinessLayer.dll
-C:\Users\cajabe\Desktop\EMS2.0\EMS\EmployeeBusinessLayer\obj\Debug\EmployeeBusinessLayer.pdb
