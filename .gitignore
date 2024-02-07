@@ -1,1 +1,5 @@
 .vs/
+EMS/bin/
+EMS/obj/
+EMS/EmployeeBusinessLayer/bin/
+EMS/EmployeeBusinessLayer/obj/
