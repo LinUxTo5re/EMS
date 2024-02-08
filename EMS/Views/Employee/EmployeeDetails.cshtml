@@ -82,7 +82,7 @@
 
                     rows[i].style.display = shouldDisplay ? "" : "none";
                 }
-                updateTable();
+            //    updateTable();
             });
 
             var clearButton = document.getElementById("clearBtn");
@@ -99,43 +99,10 @@
                 for (var i = 0; i < rows.length; i++) {
                     rows[i].style.display = "";
                 }
-                updateTable();
+            //    updateTable();
             });
         });
-        //function updateTable() {
-        //    var currentPage = 1;
-        //    var rowsPerPage = 5;
-        //    var tableBody = document.getElementById("tableBody");
-        //    var rows = tableBody.getElementsByTagName("tr");
-        //    var totalPages = Math.ceil(rows.length / rowsPerPage);
-        //    var startIndex = (currentPage - 1) * rowsPerPage;
-        //    var endIndex = Math.min(startIndex + rowsPerPage, rows.length);
 
-        //    for (var i = 0; i < rows.length; i++) {
-        //        rows[i].style.display = (i >= startIndex && i < endIndex) ? "" : "none";
-        //    }
-
-        //    document.getElementById("currentPage").innerText = "Page " + currentPage;
-        //}
-
-        //document.getElementById("prevBtn").addEventListener("click", function () {
-        //    var currentPage = parseInt(document.getElementById("currentPage").innerText.split(" ")[1]);
-        //    if (currentPage > 1) {
-        //        currentPage--;
-        //        document.getElementById("currentPage").innerText = "Page " + currentPage;
-        //        updateTable();
-        //    }
-        //});
-
-        //document.getElementById("nextBtn").addEventListener("click", function () {
-        //    var currentPage = parseInt(document.getElementById("currentPage").innerText.split(" ")[1]);
-        //    var totalPages = Math.ceil(document.getElementById("tableBody").getElementsByTagName("tr").length / 5);
-        //    if (currentPage < totalPages) {
-        //        currentPage++;
-        //        document.getElementById("currentPage").innerText = "Page " + currentPage;
-        //        updateTable();
-        //    }
-        //});
         function updateTable() {
             var currentPage = parseInt(document.getElementById("currentPage").innerText.split(" ")[1]);
             var rowsPerPage = 10;
