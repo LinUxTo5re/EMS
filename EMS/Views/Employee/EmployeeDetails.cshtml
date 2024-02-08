@@ -20,27 +20,7 @@
             </text>
         }
 
-        @*$(document).ready(function () {
-                $('#submitBtn').on('click', function () {
-            $.ajax({
-                url: '@Url.Action("EmployeeDetails", "Employee")',
-                type: 'POST',
-                data: {
-                    employeeCodeSearch: $('#employeeCodeSearch').val(),
-                    employeeNameSearch: $('#employeeNameSearch').val(),
-                    mailIDSearch: $('#mailIDSearch').val(),
-                    contactNumberSearch: $('#contactNumberSearch').val(),
-                    genderSearch: $('#genderSearch').val()
-                },
-                success: function (result) {
-
-                },
-                error: function (xhr, status, error) {
-                    // Handle the error
-                }
-            });
-        });
-        });*@
+        updateTable();
 
         document.addEventListener("DOMContentLoaded", function () {
             var table = document.getElementById("employeeTable");
@@ -102,6 +82,7 @@
 
                     rows[i].style.display = shouldDisplay ? "" : "none";
                 }
+                updateTable();
             });
 
             var clearButton = document.getElementById("clearBtn");
@@ -118,28 +99,97 @@
                 for (var i = 0; i < rows.length; i++) {
                     rows[i].style.display = "";
                 }
+                updateTable();
             });
         });
+        //function updateTable() {
+        //    var currentPage = 1;
+        //    var rowsPerPage = 5;
+        //    var tableBody = document.getElementById("tableBody");
+        //    var rows = tableBody.getElementsByTagName("tr");
+        //    var totalPages = Math.ceil(rows.length / rowsPerPage);
+        //    var startIndex = (currentPage - 1) * rowsPerPage;
+        //    var endIndex = Math.min(startIndex + rowsPerPage, rows.length);
 
+        //    for (var i = 0; i < rows.length; i++) {
+        //        rows[i].style.display = (i >= startIndex && i < endIndex) ? "" : "none";
+        //    }
+
+        //    document.getElementById("currentPage").innerText = "Page " + currentPage;
+        //}
+
+        //document.getElementById("prevBtn").addEventListener("click", function () {
+        //    var currentPage = parseInt(document.getElementById("currentPage").innerText.split(" ")[1]);
+        //    if (currentPage > 1) {
+        //        currentPage--;
+        //        document.getElementById("currentPage").innerText = "Page " + currentPage;
+        //        updateTable();
+        //    }
+        //});
+
+        //document.getElementById("nextBtn").addEventListener("click", function () {
+        //    var currentPage = parseInt(document.getElementById("currentPage").innerText.split(" ")[1]);
+        //    var totalPages = Math.ceil(document.getElementById("tableBody").getElementsByTagName("tr").length / 5);
+        //    if (currentPage < totalPages) {
+        //        currentPage++;
+        //        document.getElementById("currentPage").innerText = "Page " + currentPage;
+        //        updateTable();
+        //    }
+        //});
+        function updateTable() {
+            var currentPage = parseInt(document.getElementById("currentPage").innerText.split(" ")[1]);
+            var rowsPerPage = 10;
+            var tableBody = document.getElementById("tableBody");
+            var rows = tableBody.getElementsByTagName("tr");
+            var totalPages = Math.ceil(rows.length / rowsPerPage);
+            var startIndex = (currentPage - 1) * rowsPerPage;
+            var endIndex = Math.min(startIndex + rowsPerPage, rows.length);
+
+            for (var i = 0; i < rows.length; i++) {
+                rows[i].style.display = (i >= startIndex && i < endIndex) ? "" : "none";
+            }
+
+            document.getElementById("currentPage").innerText = "Page " + currentPage;
+        }
+
+        document.getElementById("prevBtn").addEventListener("click", function () {
+            var currentPage = parseInt(document.getElementById("currentPage").innerText.split(" ")[1]);
+            if (currentPage > 1) {
+                currentPage--;
+                document.getElementById("currentPage").innerText = "Page " + currentPage;
+                updateTable();
+            }
+        });
+
+        document.getElementById("nextBtn").addEventListener("click", function () {
+            var currentPage = parseInt(document.getElementById("currentPage").innerText.split(" ")[1]);
+            var totalPages = Math.ceil(document.getElementById("tableBody").getElementsByTagName("tr").length / 5);
+            if (currentPage < totalPages) {
+                currentPage++;
+                document.getElementById("currentPage").innerText = "Page " + currentPage;
+                updateTable();
+            }
+        });
+ 
     </script>
 }
 
 <h5 class="text-info">Employee Details</h5>
 <div class="d-flex flex-row">
     <div style="margin-right: 80px;">
-        <input style="width: 160px;" type="text" name="employeeCodeSearch" id="employeeCodeSearch" placeholder="Search Code..."  />
+        <input style="width: 160px;" type="text" name="employeeCodeSearch" id="employeeCodeSearch" placeholder="Search Code..." />
     </div>
     <div style="margin-right: 40px;">
         <input style="width: 200px;" type="text" id="employeeNameSearch" placeholder="Search Name..." />
     </div>
     <div style="margin-right: 160px;">
-        <input style="width: 300px;" type="text" name="mailIDSearch" id="mailIDSearch" placeholder="Search Email..."  />
+        <input style="width: 300px;" type="text" name="mailIDSearch" id="mailIDSearch" placeholder="Search Email..." />
     </div>
     <div style="margin-right: 80px;">
-        <input style="width: 170px;" type="text" name="contactNumberSearch" id="contactNumberSearch" placeholder="Search Number..."/>
+        <input style="width: 170px;" type="text" name="contactNumberSearch" id="contactNumberSearch" placeholder="Search Number..." />
     </div>
     <div style="margin-right: 20px;">
-        <input style="width: 110px;" type="text" name="genderSearch" id="genderSearch" placeholder="Search Gender..."/>
+        <input style="width: 110px;" type="text" name="genderSearch" id="genderSearch" placeholder="Search Gender..." />
     </div>
     <div class="d-flex flex-row">
         <input style="margin-right: 20px;" type="submit" id="searchBtn" name="action" value="Search" />
@@ -157,7 +207,7 @@
             <th style="width: 80px;" data-sort="Gender">Gender</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="tableBody">
         @foreach (var item in Model)
         {
             <tr>
@@ -171,5 +221,10 @@
     </tbody>
 </table>
 
+<div id="pagination" class="pagination">
+    <button id="prevBtn">&lt; Prev</button>
+    <span id="currentPage">Page 1</span>
+    <button id="nextBtn">Next &gt;</button>
+</div>    
 
 @Html.Partial("_MessageHandler")
