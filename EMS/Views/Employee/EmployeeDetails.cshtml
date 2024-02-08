@@ -19,21 +19,157 @@
                 });
             </text>
         }
+
+        @*$(document).ready(function () {
+                $('#submitBtn').on('click', function () {
+            $.ajax({
+                url: '@Url.Action("EmployeeDetails", "Employee")',
+                type: 'POST',
+                data: {
+                    employeeCodeSearch: $('#employeeCodeSearch').val(),
+                    employeeNameSearch: $('#employeeNameSearch').val(),
+                    mailIDSearch: $('#mailIDSearch').val(),
+                    contactNumberSearch: $('#contactNumberSearch').val(),
+                    genderSearch: $('#genderSearch').val()
+                },
+                success: function (result) {
+
+                },
+                error: function (xhr, status, error) {
+                    // Handle the error
+                }
+            });
+        });
+        });*@
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var table = document.getElementById("employeeTable");
+            var ths = table.getElementsByTagName("th");
+            for (var i = 0; i < ths.length; i++) {
+                ths[i].addEventListener("click", function () {
+                    var table = this.closest("table");
+                    var ths = table.getElementsByTagName("th");
+                    var columnIndex = Array.prototype.indexOf.call(ths, this);
+                    var rows = Array.from(table.getElementsByTagName("tr")).slice(1);
+                    var sortOrder = this.dataset.sortOrder || "asc";
+                    rows.sort(function (a, b) {
+                        var aValue = a.cells[columnIndex].textContent;
+                        var bValue = b.cells[columnIndex].textContent;
+                        return sortOrder === "asc" ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+                    });
+                    for (var i = 0; i < ths.length; i++) {
+                        ths[i].removeAttribute("data-sort-order");
+                    }
+                    this.dataset.sortOrder = sortOrder === "asc" ? "desc" : "asc";
+                    for (var i = 0; i < rows.length; i++) {
+                        table.appendChild(rows[i]);
+                    }
+                });
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var searchButton = document.getElementById("searchBtn");
+            searchButton.addEventListener("click", function () {
+                var employeeCodeSearch = document.getElementById("employeeCodeSearch").value.toLowerCase();
+                var employeeNameSearch = document.getElementById("employeeNameSearch").value.toLowerCase();
+                var mailIDSearch = document.getElementById("mailIDSearch").value.toLowerCase();
+                var contactNumberSearch = document.getElementById("contactNumberSearch").value.toLowerCase();
+                var genderSearch = document.getElementById("genderSearch").value.toLowerCase();
+
+                var tableBody = document.getElementById("employeeTable").getElementsByTagName("tbody")[0];
+                var rows = tableBody.getElementsByTagName("tr");
+
+                for (var i = 0; i < rows.length; i++) {
+                    var cells = rows[i].getElementsByTagName("td");
+                    var shouldDisplay = true;
+
+                    if (employeeCodeSearch && cells[0].textContent.toLowerCase().indexOf(employeeCodeSearch) === -1) {
+                        shouldDisplay = false;
+                    }
+                    if (employeeNameSearch && cells[1].textContent.toLowerCase().indexOf(employeeNameSearch) === -1) {
+                        shouldDisplay = false;
+                    }
+                    if (mailIDSearch && cells[2].textContent.toLowerCase().indexOf(mailIDSearch) === -1) {
+                        shouldDisplay = false;
+                    }
+                    if (contactNumberSearch && cells[3].textContent.toLowerCase().indexOf(contactNumberSearch) === -1) {
+                        shouldDisplay = false;
+                    }
+                    if (genderSearch && cells[4].textContent.toLowerCase().indexOf(genderSearch) === -1) {
+                        shouldDisplay = false;
+                    }
+
+                    rows[i].style.display = shouldDisplay ? "" : "none";
+                }
+            });
+
+            var clearButton = document.getElementById("clearBtn");
+            clearButton.addEventListener("click", function () {
+                document.getElementById("employeeCodeSearch").value = "";
+                document.getElementById("employeeNameSearch").value = "";
+                document.getElementById("mailIDSearch").value = "";
+                document.getElementById("contactNumberSearch").value = "";
+                document.getElementById("genderSearch").value = "";
+
+                var tableBody = document.getElementById("employeeTable").getElementsByTagName("tbody")[0];
+                var rows = tableBody.getElementsByTagName("tr");
+
+                for (var i = 0; i < rows.length; i++) {
+                    rows[i].style.display = "";
+                }
+            });
+        });
+
     </script>
 }
 
 <h5 class="text-info">Employee Details</h5>
+<div class="d-flex flex-row">
+    <div style="margin-right: 80px;">
+        <input style="width: 160px;" type="text" name="employeeCodeSearch" id="employeeCodeSearch" placeholder="Search Code..."  />
+    </div>
+    <div style="margin-right: 40px;">
+        <input style="width: 200px;" type="text" id="employeeNameSearch" placeholder="Search Name..." />
+    </div>
+    <div style="margin-right: 160px;">
+        <input style="width: 300px;" type="text" name="mailIDSearch" id="mailIDSearch" placeholder="Search Email..."  />
+    </div>
+    <div style="margin-right: 80px;">
+        <input style="width: 170px;" type="text" name="contactNumberSearch" id="contactNumberSearch" placeholder="Search Number..."/>
+    </div>
+    <div style="margin-right: 20px;">
+        <input style="width: 110px;" type="text" name="genderSearch" id="genderSearch" placeholder="Search Gender..."/>
+    </div>
+    <div class="d-flex flex-row">
+        <input style="margin-right: 20px;" type="submit" id="searchBtn" name="action" value="Search" />
+        <input type="submit" name="action" value="Clear" id="clearBtn" />
+    </div>
+</div>
 
-@if (Model != null && Model.Count > 0)
-{
-    @Html.Grid(Model).Columns(columns =>
-    {
-        columns.Add(c => c.EmployeeCode).Titled("Employee Code").Sortable(true);
-        columns.Add(c => c.EmployeeName).Titled("Name").Sortable(true);
-        columns.Add(c => c.MailID).Titled("Email ID").Sortable(true);
-        columns.Add(c => c.ContactNumber).Titled("Contact Number").Sortable(true);
-        columns.Add(c => c.Gender).Titled("Gender").Sortable(true);
-    }).WithPaging(10)
-}
+<table id="employeeTable">
+    <thead>
+        <tr>
+            <th style="width: 200px;" data-sort="EmployeeCode">Employee Code</th>
+            <th style="width: 400px;" data-sort="EmployeeName">Name</th>
+            <th style="width: 200px;" data-sort="MailID">Email ID</th>
+            <th style="width: 150px;" data-sort="ContactNumber">Contact Number</th>
+            <th style="width: 80px;" data-sort="Gender">Gender</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.EmployeeCode</td>
+                <td>@item.EmployeeName</td>
+                <td>@item.MailID</td>
+                <td>@item.ContactNumber</td>
+                <td>@item.Gender</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
 
 @Html.Partial("_MessageHandler")

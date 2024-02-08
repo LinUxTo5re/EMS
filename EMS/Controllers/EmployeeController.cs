@@ -63,5 +63,30 @@ namespace EMS.Controllers
             List<EmployeeDetails> employeeDetails = employeeDetailsBL.DisplayEmployeeDetails();
             return View(employeeDetails);
         }
+
+        [HttpPost]
+        public ActionResult EmployeeDetails(string employeeCodeSearch, string employeeNameSearch, string mailIDSearch, string contactNumberSearch, string genderSearch)
+        {
+            EmployeeDetailsBL employeeDetailsBL = new EmployeeDetailsBL();
+            List<EmployeeDetails> employeeDetails = employeeDetailsBL.DisplayEmployeeDetails(); 
+            if (employeeDetails != null)
+            {
+                employeeDetails = employeeDetails.Where(data =>
+                    (string.IsNullOrEmpty(contactNumberSearch) || data.ContactNumber != null && data.ContactNumber.IndexOf(contactNumberSearch, StringComparison.OrdinalIgnoreCase) >= 0) &&
+                    (string.IsNullOrEmpty(employeeCodeSearch) || data.EmployeeCode != null && data.EmployeeCode.IndexOf(employeeCodeSearch, StringComparison.OrdinalIgnoreCase) >= 0) &&
+                    (string.IsNullOrEmpty(employeeNameSearch) || data.EmployeeName != null && data.EmployeeName.IndexOf(employeeNameSearch, StringComparison.OrdinalIgnoreCase) >= 0) &&
+                    (string.IsNullOrEmpty(mailIDSearch) || data.MailID != null && data.MailID.IndexOf(mailIDSearch, StringComparison.OrdinalIgnoreCase) >= 0) &&
+                    (string.IsNullOrEmpty(genderSearch) || data.Gender != null && data.Gender.IndexOf(genderSearch, StringComparison.OrdinalIgnoreCase) >= 0)
+                ).ToList();
+            }
+            if (employeeDetails != null && employeeDetails.Count > 0)
+            {
+                return PartialView("_partial", employeeDetails);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
