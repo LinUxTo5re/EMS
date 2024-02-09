@@ -99,7 +99,7 @@
                 for (var i = 0; i < rows.length; i++) {
                     rows[i].style.display = "";
                 }
-            //    updateTable();
+                updateTable();
             });
         });
 
@@ -143,19 +143,19 @@
 
 <h5 class="text-info">Employee Details</h5>
 <div class="d-flex flex-row">
-    <div style="margin-right: 80px;">
-        <input style="width: 160px;" type="text" name="employeeCodeSearch" id="employeeCodeSearch" placeholder="Search Code..." />
+    <div style="margin-right: 50px;">
+        <input style="width: 140px;" type="text" name="employeeCodeSearch" id="employeeCodeSearch" placeholder="Search Code..." />
     </div>
-    <div style="margin-right: 40px;">
+    <div style="margin-right: 50px;">
         <input style="width: 200px;" type="text" id="employeeNameSearch" placeholder="Search Name..." />
     </div>
-    <div style="margin-right: 160px;">
+    <div style="margin-right: 55px;">
         <input style="width: 300px;" type="text" name="mailIDSearch" id="mailIDSearch" placeholder="Search Email..." />
     </div>
-    <div style="margin-right: 80px;">
-        <input style="width: 170px;" type="text" name="contactNumberSearch" id="contactNumberSearch" placeholder="Search Number..." />
+    <div style="margin-right: 25px;">
+        <input style="width: 150px;" type="text" name="contactNumberSearch" id="contactNumberSearch" placeholder="Search Number..." />
     </div>
-    <div style="margin-right: 20px;">
+    <div style="margin-right: 30px;">
         <input style="width: 110px;" type="text" name="genderSearch" id="genderSearch" placeholder="Search Gender..." />
     </div>
     <div class="d-flex flex-row">
@@ -168,10 +168,10 @@
     <thead>
         <tr>
             <th style="width: 200px;" data-sort="EmployeeCode">Employee Code</th>
-            <th style="width: 400px;" data-sort="EmployeeName">Name</th>
-            <th style="width: 200px;" data-sort="MailID">Email ID</th>
-            <th style="width: 150px;" data-sort="ContactNumber">Contact Number</th>
-            <th style="width: 80px;" data-sort="Gender">Gender</th>
+            <th style="width: 250px;" data-sort="EmployeeName">Name</th>
+            <th style="width: 330px;" data-sort="MailID">Email ID</th>
+            <th style="width: 180px;" data-sort="ContactNumber">Contact Number</th>
+            <th style="width: 100px;" data-sort="Gender">Gender</th>
         </tr>
     </thead>
     <tbody id="tableBody">
@@ -188,10 +188,10 @@
     </tbody>
 </table>
 
-<div id="pagination" class="pagination">
-    <button id="prevBtn">&lt; Prev</button>
-    <span id="currentPage">Page 1</span>
-    <button id="nextBtn">Next &gt;</button>
+<div id="pagination" class="pagination d-flex justify-content-center mt-lg-4" >
+    <button id="prevBtn" class="mx-3 btn btn-info">&lt; Prev</button>
+    <span id="currentPage" class="mx-3">Page 1</span>
+    <button id="nextBtn" class="mx-3 btn btn-info">Next &gt;</button>
 </div>    
 
 @Html.Partial("_MessageHandler")
