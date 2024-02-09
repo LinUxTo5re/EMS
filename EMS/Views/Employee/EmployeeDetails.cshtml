@@ -130,7 +130,7 @@
 
         document.getElementById("nextBtn").addEventListener("click", function () {
             var currentPage = parseInt(document.getElementById("currentPage").innerText.split(" ")[1]);
-            var totalPages = Math.ceil(document.getElementById("tableBody").getElementsByTagName("tr").length / 5);
+            var totalPages = Math.ceil(document.getElementById("tableBody").getElementsByTagName("tr").length / 10);
             if (currentPage < totalPages) {
                 currentPage++;
                 document.getElementById("currentPage").innerText = "Page " + currentPage;
