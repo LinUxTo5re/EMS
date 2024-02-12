@@ -16,7 +16,7 @@ namespace EMS
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Employee", action = "EmployeeDetails", id = UrlParameter.Optional }
+                defaults: new { controller = "Index", action = "EmployeeDetails", id = UrlParameter.Optional }
             );
         }
     }

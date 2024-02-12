@@ -56,6 +56,10 @@ namespace EMS.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Get api call to fetch employee table data
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult EmployeeDetails()
         {
@@ -63,7 +67,16 @@ namespace EMS.Controllers
             List<EmployeeDetails> employeeDetails = employeeDetailsBL.DisplayEmployeeDetails();
             return View(employeeDetails);
         }
-
+        
+        /// <summary>
+        /// Search records from grid using js
+        /// </summary>
+        /// <param name="employeeCodeSearch"></param>
+        /// <param name="employeeNameSearch"></param>
+        /// <param name="mailIDSearch"></param>
+        /// <param name="contactNumberSearch"></param>
+        /// <param name="genderSearch"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult EmployeeDetails(string employeeCodeSearch, string employeeNameSearch, string mailIDSearch, string contactNumberSearch, string genderSearch)
         {
